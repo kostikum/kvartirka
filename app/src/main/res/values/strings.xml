@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Kvartirka</string>
+    <string name="day_price">Per day: </string>
+    <string name="night_price">Per night: </string>
+    <string name="hour_price">Per hour: </string>
+    <string name="rooms">Rooms: </string>
+    <string name="building_type_flat">Type: Apartment</string>
+    <string name="building_type_cottage">Type: Cottage</string>
+    <string name="building_type_unknown">Type: Unknown</string>
+    <string name="permission_granted">Granted</string>
+    <string name="permission_denied">Denied</string>
+    <string name="access_required">Access required</string>
+    <string name="ok">OK</string>
+    <string name="not_available">Not available</string>
+    <string name="failure_network_connection">Проблема с интернет-соединением</string>
+    <string name="failure_server_error">Проблема с сервером</string>
 </resources>

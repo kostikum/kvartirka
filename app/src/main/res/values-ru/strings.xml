@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Квартирка</string>
+    <string name="day_price">За сутки: </string>
+    <string name="night_price">За ночь: </string>
+    <string name="hour_price">За час: </string>
+    <string name="rooms">Комнаты: </string>
+    <string name="building_type_flat">Тип: Квартира</string>
+    <string name="building_type_cottage">Тип: Коттедж</string>
+    <string name="building_type_unknown">Тип: Не определен</string>
+    <string name="permission_granted">Разрешено</string>
+    <string name="permission_denied">Отказано</string>
+    <string name="access_required">Access required</string>
+    <string name="ok">OK</string>
+    <string name="not_available">Not available</string>
+    <string name="failure_network_connection">Проблема с интернет-соединением</string>
+    <string name="failure_server_error">Проблема с сервером</string>
+</resources>

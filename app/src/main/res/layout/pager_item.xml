@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="photo"
+            type="com.kostikum.kvartirka.entity.Photo" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/pager_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#838383"
+            android:scaleType="centerInside"
+            app:imageUrl="@{photo.url}"
+            tools:ignore="ContentDescription" />
+
+    </FrameLayout>
+</layout>

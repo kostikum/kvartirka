@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.kostikum.kvartirka.ui.ListFragment"
+        android:label="ListFragment" >
+        <action
+            android:id="@+id/action_listFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.kostikum.kvartirka.ui.DetailsFragment"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="flat"
+            app:argType="com.kostikum.kvartirka.entity.Flat" />
+        <action
+            android:id="@+id/action_detailsFragment_to_photosFragment"
+            app:destination="@id/photosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photosFragment"
+        android:name="com.kostikum.kvartirka.ui.PhotosFragment"
+        android:label="PhotosFragment" >
+        <argument
+            android:name="flat"
+            app:argType="com.kostikum.kvartirka.entity.Flat" />
+    </fragment>
+</navigation>
