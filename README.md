@@ -1,4 +1,4 @@
-# life-hack-studio test project
+# Test project
 Android demo project that for Kvartirka.
 
 ## Under the hood
