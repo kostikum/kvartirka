@@ -2,7 +2,7 @@ package com.kostikum.kvartirka.repository
 
 import com.kostikum.kvartirka.entity.CountryResponse
 import com.kostikum.kvartirka.entity.FlatsResponse
-import com.kostikum.kvartirka.network.NetProvider
+import com.kostikum.kvartirka.network.ApiService
 import com.kostikum.kvartirka.util.Either
 import com.kostikum.kvartirka.util.Either.Left
 import com.kostikum.kvartirka.util.Either.Right
@@ -11,23 +11,26 @@ import com.kostikum.kvartirka.util.Failure.NetworkConnection
 import com.kostikum.kvartirka.util.Failure.ServerError
 import com.kostikum.kvartirka.util.NetworkHandler
 import retrofit2.Call
+import javax.inject.Inject
 
 interface Repository {
     fun countries(): Either<Failure, CountryResponse>
     fun flats(cityId: Int): Either<Failure, FlatsResponse>
 
-    class Network(private val networkHandler: NetworkHandler) : Repository {
+    class Network
+        @Inject constructor(private val networkHandler: NetworkHandler,
+                            private val service: ApiService) : Repository {
 
         override fun countries(): Either<Failure, CountryResponse> {
             return when (networkHandler.isConnected) {
-                true -> request(NetProvider.service.getCountries(), CountryResponse((emptyList()))) { it }
+                true -> request(service.getCountries(), CountryResponse((emptyList()))) { it }
                 false, null -> Left(NetworkConnection)
             }
         }
 
         override fun flats(cityId: Int): Either<Failure, FlatsResponse> {
             return when (networkHandler.isConnected) {
-                true -> request(NetProvider.service.getFlatsByCity(cityId), FlatsResponse(emptyList())) { it }
+                true -> request(service.getFlatsByCity(cityId), FlatsResponse(emptyList())) { it }
                 false, null -> Left(NetworkConnection)
             }
         }

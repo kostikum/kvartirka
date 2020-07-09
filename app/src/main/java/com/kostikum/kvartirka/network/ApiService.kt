@@ -1,15 +1,15 @@
 package com.kostikum.kvartirka.network
 
-import com.kostikum.kvartirka.entity.CountryResponse
-import com.kostikum.kvartirka.entity.FlatsResponse
-import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.Retrofit
+import javax.inject.Inject
+import javax.inject.Singleton
 
-interface ApiService {
-    @GET("country")
-    fun getCountries(): Call<CountryResponse>
+@Singleton
+class ApiService
+@Inject constructor(retrofit: Retrofit) : Api {
+    private val api by lazy { retrofit.create(Api::class.java) }
 
-    @GET("flats")
-    fun getFlatsByCity(@Query("city_id") city_id: Int): Call<FlatsResponse>
+    override fun getCountries() = api.getCountries()
+
+    override fun getFlatsByCity(city_id: Int) = api.getFlatsByCity(city_id)
 }

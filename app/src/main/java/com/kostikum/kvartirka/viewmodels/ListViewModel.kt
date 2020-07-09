@@ -1,19 +1,16 @@
 package com.kostikum.kvartirka.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.kostikum.kvartirka.entity.Flat
 import com.kostikum.kvartirka.entity.FlatsResponse
 import com.kostikum.kvartirka.repository.Repository
 import com.kostikum.kvartirka.util.Either
 import com.kostikum.kvartirka.util.Failure
-import com.kostikum.kvartirka.util.NetworkHandler
 import kotlinx.coroutines.*
 
-class ListViewModel(application: Application) : AndroidViewModel(application) {
+class ListViewModel(private val repository: Repository) : ViewModel() {
 
-    private val repository: Repository = Repository.Network(NetworkHandler(application))
     var flatList: MutableLiveData<List<Flat>> = MutableLiveData()
     var failure: MutableLiveData<Failure> = MutableLiveData()
 

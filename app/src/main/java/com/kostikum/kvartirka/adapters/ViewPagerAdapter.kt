@@ -7,8 +7,15 @@ import android.widget.FrameLayout
 import androidx.viewpager.widget.PagerAdapter
 import com.kostikum.kvartirka.databinding.PagerItemBinding
 import com.kostikum.kvartirka.entity.Photo
+import javax.inject.Inject
 
-class ViewPagerAdapter(private val photos: List<Photo>) : PagerAdapter() {
+class ViewPagerAdapter
+    @Inject constructor() : PagerAdapter() {
+    private var photos: List<Photo> = emptyList()
+
+    fun setPhotos(photosList: List<Photo>) {
+        photos = photosList
+    }
     override fun isViewFromObject(view: View, `object`: Any) = view == `object`
 
     override fun getCount() = photos.size

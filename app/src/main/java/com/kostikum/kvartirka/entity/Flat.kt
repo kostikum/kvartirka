@@ -2,7 +2,9 @@ package com.kostikum.kvartirka.entity
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Flat(
     val id: Int,
     val building_type: String,

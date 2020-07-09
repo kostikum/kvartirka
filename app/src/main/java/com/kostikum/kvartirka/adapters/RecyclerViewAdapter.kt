@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.kostikum.kvartirka.databinding.FlatItemBinding
 import com.kostikum.kvartirka.entity.Flat
+import javax.inject.Inject
 
-class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CompanyViewHolder>() {
+class RecyclerViewAdapter
+    @Inject constructor(): RecyclerView.Adapter<RecyclerViewAdapter.CompanyViewHolder>() {
     var flats: List<Flat> = emptyList()
         set(value) {
             field = value

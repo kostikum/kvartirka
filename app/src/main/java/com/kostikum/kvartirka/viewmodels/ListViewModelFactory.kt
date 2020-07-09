@@ -1,14 +1,16 @@
 package com.kostikum.kvartirka.viewmodels
 
-import android.app.Activity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.kostikum.kvartirka.repository.Repository
+import javax.inject.Inject
 
-class ListViewModelFactory(private val activity: Activity) : ViewModelProvider.Factory {
+class ListViewModelFactory
+    @Inject constructor(private val repository: Repository) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return ListViewModel(activity.application) as T
+            return ListViewModel(repository) as T
         }
         throw IllegalArgumentException("Unable to construct view model!")
     }

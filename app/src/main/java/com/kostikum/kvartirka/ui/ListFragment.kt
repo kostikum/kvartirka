@@ -17,6 +17,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.kostikum.kvartirka.AndroidApplication
 import com.kostikum.kvartirka.R
 import com.kostikum.kvartirka.adapters.RecyclerViewAdapter
 import com.kostikum.kvartirka.databinding.FragmentListBinding
@@ -26,14 +27,17 @@ import com.kostikum.kvartirka.viewmodels.ListViewModel
 import com.kostikum.kvartirka.viewmodels.ListViewModelFactory
 import kotlinx.android.synthetic.main.fragment_list.view.*
 import java.util.*
+import javax.inject.Inject
 
 const val PRMSSN_REQUEST = 0
 
 class ListFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallback {
-    private val viewModel: ListViewModel by viewModels {
-        ListViewModelFactory(requireActivity())
-    }
 
+
+    @Inject lateinit var listViewModelFactory: ListViewModelFactory
+    private val viewModel: ListViewModel by viewModels { listViewModelFactory }
+
+    @Inject lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private var binding: FragmentListBinding? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
@@ -49,9 +53,9 @@ class ListFragment : Fragment(), ActivityCompat.OnRequestPermissionsResultCallba
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        (activity?.application as AndroidApplication).appComponent.inject(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         checkAndRequestPermissions()
-        val recyclerViewAdapter = RecyclerViewAdapter()
         recyclerViewAdapter.clickListener = { flat, view ->
             val direction = ListFragmentDirections.actionListFragmentToDetailsFragment(flat)
             view.findNavController().navigate(direction)
