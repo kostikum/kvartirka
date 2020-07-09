@@ -1,12 +1,12 @@
 package com.kostikum.kvartirka.adapters
 
+import android.content.res.Resources
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.kostikum.kvartirka.R
-import com.kostikum.kvartirka.entity.BuildingType
 
 @BindingAdapter("imageUrl")
 fun setImageUrl(imageView: ImageView, url: String?) {
@@ -19,10 +19,11 @@ fun setImageUrl(imageView: ImageView, url: String?) {
 
 @BindingAdapter("setBuildingTypeText")
 fun setText(textView: TextView, text: String?) {
+    val context = textView.context.applicationContext
     textView.text = when (text) {
-        "flat" -> BuildingType.FLAT.getResName()
-        "cottage" -> BuildingType.COTTAGE.getResName()
-        else -> BuildingType.UNKNOWN.getResName()
+        "flat" -> context.getString(R.string.building_type_flat)
+        "cottage" -> context.getString(R.string.building_type_cottage)
+        else -> context.getString(R.string.building_type_unknown)
     }
 }
 

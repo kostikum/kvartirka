@@ -7,10 +7,6 @@ import com.kostikum.kvartirka.di.DaggerApplicationComponent
 
 class AndroidApplication : Application() {
 
-    companion object {
-        lateinit var instance: AndroidApplication
-    }
-
     val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
         DaggerApplicationComponent
             .builder()
@@ -21,6 +17,5 @@ class AndroidApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         appComponent.inject(this)
-        instance = this
     }
 }
